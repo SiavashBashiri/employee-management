@@ -1,13 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import { HydratedDocument, Schema as MongooseSchema } from 'mongoose';
 import { TagType } from '../consts/tag-type.const';
 
 export type TagDocument = HydratedDocument<Tag>;
 
 @Schema({ timestamps: true })
 export class Tag {
-  @Prop()
-  id: string | number;
+  @Prop({ type: MongooseSchema.Types.Mixed })
+  id?: string | number;
 
   @Prop({ required: true })
   label: string;

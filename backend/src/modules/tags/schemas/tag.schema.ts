@@ -4,7 +4,17 @@ import { TagType } from '../consts/tag-type.const';
 
 export type TagDocument = HydratedDocument<Tag>;
 
-@Schema({ timestamps: true })
+@Schema({
+  timestamps: true,
+  versionKey: false,
+  toJSON: {
+    transform: (_, ret: any) => {
+      delete ret._id;
+
+      return ret;
+    },
+  },
+})
 export class Tag {
   @Prop({ type: MongooseSchema.Types.Mixed })
   id?: string | number;
@@ -15,8 +25,12 @@ export class Tag {
   @Prop({ required: true })
   color: string;
 
-  @Prop({ required: true })
-  type: TagType;
+  @Prop({
+    required: true,
+    enum: Object.values(TagType),
+    default: TagType.POSITIVE,
+  })
+  type: TagType = TagType.POSITIVE;
 }
 
 export const TagSchema = SchemaFactory.createForClass(Tag);

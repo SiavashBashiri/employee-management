@@ -27,6 +27,7 @@ export class Tag {
 
   @Prop({
     required: true,
+    type: String,
     enum: Object.values(TagType),
     default: TagType.POSITIVE,
   })

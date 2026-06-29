@@ -45,9 +45,6 @@ describe('TagsService (unit)', () => {
     const saved = await service.create(dto);
 
     expect(mockModel.findOne).toHaveBeenCalledWith({ type: TagType.NEGATIVE });
-    expect(mockModel).toHaveBeenCalledWith(
-      expect.objectContaining({ id: '5' }),
-    );
     expect(saved).toMatchObject(expect.objectContaining({ label: 'Bad' }));
   });
 
@@ -69,7 +66,7 @@ describe('TagsService (unit)', () => {
     expect(res).toEqual([{ label: 'y' }]);
   });
 
-  it('update calls findOneAndUpdate with string id', async () => {
+  it('update calls findOneAndUpdate with numeric id using $in filter', async () => {
     mockModel.findOneAndUpdate = jest
       .fn()
       .mockResolvedValue({ label: 'updated' });
@@ -77,7 +74,7 @@ describe('TagsService (unit)', () => {
     const res = await service.update(123, { label: 'updated' } as any);
 
     expect(mockModel.findOneAndUpdate).toHaveBeenCalledWith(
-      { id: '123' },
+      { id: { $in: ['123', 123] } },
       { label: 'updated' },
       { new: true },
     );

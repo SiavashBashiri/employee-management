@@ -45,7 +45,9 @@ describe('TagsService (unit)', () => {
     const saved = await service.create(dto);
 
     expect(mockModel.findOne).toHaveBeenCalledWith({ type: TagType.NEGATIVE });
-    expect(mockModel).toHaveBeenCalledWith(expect.objectContaining({ id: 5 }));
+    expect(mockModel).toHaveBeenCalledWith(
+      expect.objectContaining({ id: '5' }),
+    );
     expect(saved).toMatchObject(expect.objectContaining({ label: 'Bad' }));
   });
 
@@ -88,6 +90,17 @@ describe('TagsService (unit)', () => {
     const res = await service.remove('abc');
 
     expect(mockModel.deleteOne).toHaveBeenCalledWith({ id: 'abc' });
+    expect(res).toEqual({ deletedCount: 1 });
+  });
+
+  it('remove calls deleteOne with numeric id as string or number', async () => {
+    mockModel.deleteOne = jest.fn().mockResolvedValue({ deletedCount: 1 });
+
+    const res = await service.remove('123');
+
+    expect(mockModel.deleteOne).toHaveBeenCalledWith({
+      id: { $in: ['123', 123] },
+    });
     expect(res).toEqual({ deletedCount: 1 });
   });
 });

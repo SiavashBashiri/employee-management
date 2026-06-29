@@ -9,7 +9,9 @@ export type EmployeeDocument = HydratedDocument<Employee>;
   versionKey: false,
   toJSON: {
     transform: (_, ret: any) => {
+      ret.id = ret._id;
       delete ret._id;
+      delete ret.__v;
       return ret;
     },
   },
@@ -21,7 +23,7 @@ export class Employee {
   @Prop({ required: true })
   lastName: string;
 
-  @Prop({ required: true, enum: Object.values(OfficeLocation) })
+  @Prop({ required: true, type: String, enum: Object.values(OfficeLocation) })
   office: OfficeLocation;
 
   @Prop({ required: true, type: Date })

@@ -15,7 +15,7 @@ export class CreateEmployeeDto {
   lastName: string;
 
   @IsEnum(OfficeLocation)
-  office: string;
+  office: OfficeLocation;
 
   @IsDateString()
   dateOfBirth: string;

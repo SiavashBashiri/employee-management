@@ -12,48 +12,82 @@ $sidebar-width: 260px;
     'sidebar content';
   height: 100vh;
   width: 100vw;
-}
-
-.header {
-  grid-area: header;
-  background-color: $color-primary;
-  color: $color-white;
-  padding: 0 20px;
-  z-index: 100;
-  @include flex-center-between;
-  border-bottom: 1px solid rgba($color-white, 0.1);
-
-  .logo {
-    font-weight: bold;
-    font-size: 1.2rem;
-  }
-}
-
-.sidebar {
-  grid-area: sidebar;
-  background-color: $color-white;
-  border-right: 1px solid $color-border;
-  padding: 20px 0;
-  overflow-y: auto;
-}
-
-.content {
-  grid-area: content;
-  background-color: $color-bg-light;
+  row-gap: 30px;
   padding: 30px;
-  overflow-y: auto;
-  height: 100%;
-}
 
-@media (max-width: 768px) {
-  .layout {
+  &__header {
+    display: flex;
+    flex-direction: row;
+    grid-area: header;
+    align-items: center;
+    gap: 40px;
+
+    > app-header {
+      flex-grow: 1;
+      height: 100%;
+    }
+  }
+
+  &__logo {
+    flex: 0 0 255px;
+    width: 100px;
+    height: 50px;
+    transform: skew(-20deg);
+    background: var(--mat-sys-primary);
+    border-radius: 10px;
+    position: relative;
+  }
+
+  &__logo-text {
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    font-size: 18px;
+    color: var(--mat-sys-on-primary);
+  }
+
+  &__header-bar {
+    background: var(--mat-sys-secondary-container);
+    padding: 0 20px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
+    border: 1px solid var(--mat-sys-outline-variant);
+    border-radius: 30px;
+  }
+
+  &__sidebar {
+    grid-area: sidebar;
+    border-right: 1px solid var(--mat-sys-outline-variant);
+    padding: 0;
+    overflow-y: auto;
+    height: 100%;
+    border: 1px solid var(--mat-sys-outline-variant);
+    border-radius: 50px;
+  }
+
+  &__content {
+    grid-area: content;
+    background: var(--mat-sys-surface);
+    padding: 30px;
+    overflow-y: auto;
+    height: 100%;
+  }
+
+  @media (max-width: 768px) {
     grid-template-columns: 1fr;
     grid-template-areas:
       'header'
       'content';
-  }
 
-  .sidebar {
-    display: none;
+    &__sidebar {
+      display: none;
+    }
+
+    &__logo {
+      display: none;
+    }
   }
 }

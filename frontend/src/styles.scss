@@ -1,24 +1,12 @@
-
-$color-primary: #2c3e50;
-$color-bg-light: #f8f9fa;
-$color-white: #ffffff;
-$color-border: #e9ecef;
-$color-accent: #3498db;
-
-@mixin flex-center-between {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-  
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-  
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
 }
-  

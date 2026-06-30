@@ -1,0 +1,20 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+mat-sidenav-container {
+  width: 100%;
+  height: 100%;
+}
+
+mat-sidenav {
+  width: 100%;
+  background: var(--mat-sys-secondary-container);
+}
+
+mat-nav-list {
+    padding: 40px 10px 0 10px;
+}
+

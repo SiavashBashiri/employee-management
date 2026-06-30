@@ -1,0 +1,59 @@
+@use '../../../styles.scss' as *;
+
+$header-height: 60px;
+$sidebar-width: 260px;
+
+.layout {
+  display: grid;
+  grid-template-rows: $header-height 1fr;
+  grid-template-columns: $sidebar-width 1fr;
+  grid-template-areas:
+    'header header'
+    'sidebar content';
+  height: 100vh;
+  width: 100vw;
+}
+
+.header {
+  grid-area: header;
+  background-color: $color-primary;
+  color: $color-white;
+  padding: 0 20px;
+  z-index: 100;
+  @include flex-center-between;
+  border-bottom: 1px solid rgba($color-white, 0.1);
+
+  .logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: $color-white;
+  border-right: 1px solid $color-border;
+  padding: 20px 0;
+  overflow-y: auto;
+}
+
+.content {
+  grid-area: content;
+  background-color: $color-bg-light;
+  padding: 30px;
+  overflow-y: auto;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'header'
+      'content';
+  }
+
+  .sidebar {
+    display: none;
+  }
+}

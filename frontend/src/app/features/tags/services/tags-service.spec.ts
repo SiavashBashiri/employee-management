@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-
-import { Tag } from './tag';
+import { TagsService } from './tags-service';
 
 describe('Tag', () => {
-  let service: Tag;
+  let service: TagsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Tag);
+    service = TestBed.inject(TagsService);
   });
 
   it('should be created', () => {

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { TagList } from '../tag-list/tag-list';
 
 @Component({
   selector: 'app-tag',
-  imports: [],
+  imports: [TagList],
   templateUrl: './tag.html',
   styleUrl: './tag.scss',
 })
